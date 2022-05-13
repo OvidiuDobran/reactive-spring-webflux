@@ -19,7 +19,7 @@ import java.util.List;
 @AutoConfigureWebTestClient
 class MovieInfoControllerTest {
 
-    static final String MOVIES_INFO_URL = "/v1/movieinfo";
+    static final String MOVIES_INFO_URL = "/v1/movieinfos";
     @Autowired
     MovieInfoRepository movieInfoRepository;
     @Autowired

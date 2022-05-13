@@ -24,7 +24,6 @@ public class MoviesInfoControllerUnitTest {
 
     static final String MOVIES_INFOS_URL = "/v1/movieinfos";
 
-    static final String MOVIE_INFO_URL = "/v1/movieinfo";
 
     @Autowired
     WebTestClient webTestClient;
@@ -55,7 +54,7 @@ public class MoviesInfoControllerUnitTest {
 
         when(movieInfoServiceMock.getMovieInfoById(isA(String.class))).thenReturn(Mono.just(expectedMovieInfo));
 
-        webTestClient.get().uri(MOVIE_INFO_URL + "/{id}", "abc").exchange().expectStatus().is2xxSuccessful()
+        webTestClient.get().uri(MOVIES_INFOS_URL + "/{id}", "abc").exchange().expectStatus().is2xxSuccessful()
                 .expectBody(MovieInfo.class).consumeWith(res -> assertNotNull(res.getResponseBody()));
     }
 

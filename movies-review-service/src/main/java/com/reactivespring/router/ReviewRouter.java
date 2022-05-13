@@ -14,10 +14,9 @@ public class ReviewRouter {
 
     @Bean
     public RouterFunction<ServerResponse> reviewsRouter(ReviewHandler reviewHandler) {
-        return route().nest(path(""), builder -> builder.POST("", reviewHandler::addReview)
-                                                        .GET("/v1/reviews", reviewHandler::getReviews).DELETE("/{id}",
-                                                                                                              request -> reviewHandler.deleteReview(
-                                                                                                                      request)))
+        return route().nest(path("/v1/reviews"),
+                            builder -> builder.POST("", reviewHandler::addReview).GET("", reviewHandler::getReviews)
+                                              .DELETE("/{id}", request -> reviewHandler.deleteReview(request)))
                       .GET("/v1/helloworld", (request -> ServerResponse.ok().bodyValue("Hello World!"))).build();
     }
 }

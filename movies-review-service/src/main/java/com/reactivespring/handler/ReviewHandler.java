@@ -48,6 +48,11 @@ public class ReviewHandler {
         return ServerResponse.ok().body(reviewsFlux, Review.class);
     }
 
+    public Mono<ServerResponse> getReviewsByMovie(ServerRequest request) {
+        var movieId = request.pathVariable("movieId");
+        return ServerResponse.ok().body(reviewReactiveRepository.findAllByMovieInfoId(movieId), Review.class);
+    }
+
     public Mono<ServerResponse> deleteReview(ServerRequest request) {
         var reviewId = request.pathVariable("id");
         return reviewReactiveRepository.deleteById(reviewId).then(ServerResponse.noContent().build());
